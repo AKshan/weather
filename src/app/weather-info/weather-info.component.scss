@@ -1,5 +1,11 @@
 .search-box {
   margin-bottom: 3rem;
+
+  .btn {
+    + .btn {
+      margin-left: 1rem;
+    }
+  }
 }
 
 .weather-list {

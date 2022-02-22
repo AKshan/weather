@@ -9,7 +9,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 
 export class WeatherInfoComponent implements OnInit {
-  locNameForm!: FormGroup;
+  cityForm!: FormGroup;
   weatherData: any = [];
   result = false;
   errorMessage = 'Please enter city name correctly';
@@ -27,7 +27,7 @@ export class WeatherInfoComponent implements OnInit {
 
   ngOnInit() {
     // Reactive Form
-    this.locNameForm = this.fb.group({
+    this.cityForm = this.fb.group({
       cityName: ['', Validators.required],
       cityControl: ['']
     });
@@ -72,5 +72,8 @@ export class WeatherInfoComponent implements OnInit {
         });
   }
 
+  resetForm() {
+    this.cityForm.reset();
+  }
 
 }

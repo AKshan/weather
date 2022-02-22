@@ -1,14 +1,17 @@
 <div class="search-box">
-  <form [formGroup]="locNameForm">
+  <form [formGroup]="cityForm">
     <div class="mb-3">
       <label for="cityname" class="form-label">Enter City</label>
       <input type="text" id="cityname" class="form-control" formControlName="cityName" required #ct>
       <div *ngIf="result" class="text-danger fs-6">{{errorMessage}}</div>
     </div>
     <button type="submit" class="btn btn-primary"
-            [disabled]="!locNameForm.valid"
+            [disabled]="!cityForm.valid"
             (click)="addData(ct.value)">
       Add City
+    </button>
+    <button type="submit" class="btn btn-outline-secondary" (click)="resetForm()">
+      Reset
     </button>
   </form>
 </div>

@@ -1,0 +1,35 @@
+<div class="search-box">
+  <form [formGroup]="locNameForm">
+    <div class="mb-3">
+      <label for="cityname" class="form-label">Enter City</label>
+      <input type="text" id="cityname" class="form-control" formControlName="cityName" required #ct>
+      <div *ngIf="result" class="text-danger fs-6">{{errorMessage}}</div>
+    </div>
+    <button type="submit" class="btn btn-primary"
+            [disabled]="!locNameForm.valid"
+            (click)="addData(ct.value)">
+      Add City
+    </button>
+  </form>
+</div>
+
+
+<div class="weather-list">
+  <ul class="list-unstyled d-grid flex-wrap">
+    <li *ngFor="let weatherData of weatherData; let i =index">
+      <h3 class="text-primary d-flex justify-content-between">
+        <a routerLink="/details">{{weatherData.name}}</a>
+      </h3>
+      <p class="temp">{{weatherData.main.temp}} <span class="fs-6"><sup>o</sup>(C)</span></p>
+      <div>
+        <p><span class="text-muted">Humidity:</span> {{weatherData.main.humidity}}</p>
+        <p><span class="text-muted">Chance of Rain:</span> {{weatherData.weather.main}}</p>
+      </div>
+
+    </li>
+  </ul>
+</div>
+
+
+
+

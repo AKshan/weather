@@ -19,19 +19,21 @@
 
 <div class="weather-list">
   <ul class="list-unstyled d-grid flex-wrap">
-    <li *ngFor="let weatherData of weatherData; let i =index">
+    <li *ngFor="let weatherData of weatherData; let i =index" (click)="weatherDetails(weatherData)">
       <h3 class="text-primary d-flex justify-content-between">
-        <a routerLink="/details">{{weatherData.name}}</a>
+        <a>{{weatherData.name}}</a>
       </h3>
       <p class="temp">{{weatherData.main.temp}} <span class="fs-6"><sup>o</sup>(C)</span></p>
       <div>
         <p><span class="text-muted">Humidity:</span> {{weatherData.main.humidity}}</p>
         <p><span class="text-muted">Chance of Rain:</span> {{weatherData.weather.main}}</p>
       </div>
-
     </li>
   </ul>
 </div>
+<router-outlet></router-outlet>
+
+<app-weather-details [cityD]="selectCity"></app-weather-details>
 
 
 

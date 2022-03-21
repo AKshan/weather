@@ -7,6 +7,7 @@ import {WeatherService} from "../weather.service";
   styleUrls: ['./weather-details.component.scss']
 })
 export class WeatherDetailsComponent implements OnInit {
+  @Input() cityD : any
   title = 'London'
   constructor(private weatherService: WeatherService) {
   }

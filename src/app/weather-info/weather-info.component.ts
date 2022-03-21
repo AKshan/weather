@@ -20,7 +20,7 @@ export class WeatherInfoComponent implements OnInit {
     {'name': 'Los Angeles'},
     {'name': 'Tokyo'}
   ]
-  selectCity: any = []
+  selectCity:any;
 
   constructor(private weatherService: WeatherService, private fb: FormBuilder) {
   }
@@ -33,17 +33,17 @@ export class WeatherInfoComponent implements OnInit {
     });
 
     // Push JSON data to Array
-    for (let i = 0; i < this.cities.length; i++) {
-      this.weatherService.getWeatherData(this.cities[i].name)
+    const arr = this.cities;
+    arr.forEach((cities, index) => {
+      this.weatherService.getWeatherData(cities.name)
         .subscribe(
           res => {
             if (res) {
               this.weatherData.push(this.parseData(res));
             }
-            // console.log(this.weatherData);
           }
         )
-    }
+    })
   }
 
   // Filter Data
@@ -55,25 +55,25 @@ export class WeatherInfoComponent implements OnInit {
     }
   }
 
-
   // Add Cities for dummy purpose only
   addData(cityName: any) {
     this.weatherService.getWeatherData(cityName)
       .subscribe(
         res => {
-
-          //console.log('response received')
           this.result = false;
           this.weatherData.push(this.parseData(res));
         },
         error => {
-          console.error(this.errorMessage);
           this.result = true;
         });
   }
 
   resetForm() {
     this.cityForm.reset();
+  }
+
+  weatherDetails(id:any) {
+    this.selectCity = id;
   }
 
 }
